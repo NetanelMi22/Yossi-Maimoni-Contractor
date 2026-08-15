@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&family=Assistant:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ---------------------------------------------------------------------
+   Design tokens for the Tailwind-driven multi-page app (src/routes,
+   src/components). Kept in exact sync with the legacy variables below
+   (--ink/--cream/--accent/etc.) so both layers of the site share one
+   brand palette: warm off-white surfaces, near-black ink, soft gold accent.
+--------------------------------------------------------------------- */
+@theme {
+  --font-sans: "Assistant", "Heebo", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Heebo", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: #ffffff;
+  --color-foreground: #171817;
+
+  --color-card: #ffffff;
+  --color-card-foreground: #171817;
+
+  --color-popover: #ffffff;
+  --color-popover-foreground: #171817;
+
+  --color-primary: #171817;
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #f5f3ee;
+  --color-secondary-foreground: #171817;
+
+  --color-muted: #f5f3ee;
+  --color-muted-foreground: #77766f;
+
+  --color-accent: #b78a4a;
+  --color-accent-foreground: #171817;
+
+  --color-destructive: #b3392c;
+  --color-destructive-foreground: #ffffff;
+
+  --color-border: #dddcd5;
+  --color-input: #dddcd5;
+  --color-ring: #b78a4a;
+
+  --color-ink: #171817;
+  --color-ink-foreground: #ffffff;
+  --color-ink-muted: #a9a89f;
+
+  --color-surface: #f5f3ee;
+
+  --shadow-soft: 0 1px 2px rgba(23, 24, 23, 0.05), 0 4px 14px rgba(23, 24, 23, 0.05);
+  --shadow-lift: 0 22px 44px -14px rgba(23, 24, 23, 0.24), 0 8px 18px -10px rgba(23, 24, 23, 0.12);
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-[1240px] px-5 md:px-8;
+  }
+  .section-y {
+    @apply py-14 md:py-20;
+  }
+  .eyebrow {
+    @apply text-xs font-bold tracking-[0.16em] text-accent;
+  }
+  .placeholder-chip {
+    @apply mt-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-dashed border-border bg-surface px-3 py-1 text-xs font-medium text-muted-foreground;
+  }
+}
+
+:root{--ink:#171817;--cream:#f5f3ee;--paper:#fff;--muted:#77766f;--line:#dddcd5;--accent:#b78a4a;--max:1240px}
+/* Legacy styles for the static one-page homepage (src/main.tsx). Scoped into
+   Tailwind's "base" layer (rather than left unlayered) so these generic tag
+   selectors (a, img, h1-h3, etc.) never outrank Tailwind utility classes used
+   by the multi-page app in src/routes — unlayered CSS always wins over layered
+   CSS regardless of specificity, which previously made e.g. text-color
+   utilities on <a> tags invisible. This has no visual effect on this legacy
+   page itself, since nothing else here competes with its own .class rules. */
+@layer base {
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Assistant,Arial,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}h1,h2,h3,p{margin:0}.site-header{height:84px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;position:fixed;top:0;right:0;left:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,0,0,.07)}.logo{display:flex;align-items:center;gap:12px}.logo-mark{width:42px;height:42px;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:Heebo;font-weight:800}.logo strong,.logo small{display:block}.logo strong{font-family:Heebo;font-size:17px}.logo small{font-size:11px;color:var(--muted)}nav{display:flex;gap:34px;font-size:14px;font-weight:600}nav a:hover{color:var(--accent)}.header-cta{background:var(--ink);color:#fff;padding:13px 20px;font-size:14px;font-weight:700}.header-cta span{margin-right:9px;color:#d1b27d}.hero{height:100vh;min-height:650px;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:#222}.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,.72),rgba(10,10,10,.35) 55%,rgba(10,10,10,.12))}.hero-content{position:relative;color:#fff;width:min(var(--max),90%);margin:0 auto;padding:0 0 11vh}.kicker,.section-label{font-size:12px;font-weight:700;letter-spacing:.16em}.kicker{color:#d8bf98;margin-bottom:22px}.hero h1{font-family:Heebo;font-size:clamp(58px,8vw,112px);line-height:.93;letter-spacing:-.045em;font-weight:800}.hero h1 em{font-style:normal;color:#d0ad76}.hero-copy{font-size:19px;line-height:1.7;color:rgba(255,255,255,.78);max-width:530px;margin-top:30px}.hero-actions{display:flex;gap:12px;margin-top:34px}.button{min-height:54px;padding:0 25px;display:inline-flex;align-items:center;justify-content:center;gap:12px;font-weight:700;font-size:14px}.button-light{background:#fff;color:var(--ink)}.button-outline{border:1px solid rgba(255,255,255,.45);color:#fff}.hero-number{position:absolute;bottom:45px;left:5vw;color:#fff;font-size:12px;opacity:.75}.hero-number span{margin:0 7px;color:#d0ad76}.trust-strip{display:grid;grid-template-columns:repeat(3,1fr);max-width:var(--max);margin:auto;border-bottom:1px solid var(--line)}.trust-strip div{padding:30px 35px;display:flex;gap:18px;align-items:center;border-left:1px solid var(--line)}.trust-strip div:first-child{border-left:0}.trust-strip span{font-family:Heebo;font-weight:800;color:var(--accent);font-size:12px}.trust-strip strong{font-family:Heebo;font-size:16px}.section{max-width:var(--max);margin:auto;padding:130px 5vw}.section-label{color:var(--accent);white-space:nowrap}.intro{display:grid;grid-template-columns:1fr 1.55fr;gap:8vw}.intro h2,.section-heading h2,.contact h2{font-family:Heebo;font-size:clamp(40px,5vw,67px);line-height:1.05;letter-spacing:-.035em;margin-top:18px}.intro h2 span,.contact h2 span{color:var(--accent)}.intro>div:last-child{max-width:650px}.intro p{font-size:19px;line-height:1.9;color:#66655f;margin-bottom:16px}.text-link{display:inline-flex;gap:12px;font-weight:700;margin-top:18px;border-bottom:1px solid var(--accent);padding-bottom:8px}.services{background:var(--cream);max-width:none;padding-left:max(5vw,calc((100vw - var(--max))/2));padding-right:max(5vw,calc((100vw - var(--max))/2))}.section-heading{display:flex;justify-content:space-between;gap:60px;align-items:flex-end}.section-heading>p{max-width:380px;color:var(--muted);line-height:1.8;font-size:16px}.service-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:65px;border-top:1px solid var(--line);border-right:1px solid var(--line)}.service-card{min-height:250px;padding:30px;border-left:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;transition:.3s}.service-card:hover{background:#fff;transform:translateY(-3px)}.service-card>span{font-size:11px;color:var(--accent);font-weight:700}.service-card h3{font-family:Heebo;font-size:25px;margin-top:60px}.service-card p{color:var(--muted);line-height:1.7;margin-top:12px;max-width:270px}.service-card b{position:absolute;bottom:27px;left:30px;font-size:21px;font-weight:400}.projects{padding-bottom:150px}.project-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:35px;margin-top:65px}.project-card{background:var(--cream)}.project-1{grid-row:span 2}.project-image{overflow:hidden}.project-1 .project-image{height:570px}.project-2 .project-image,.project-3 .project-image{height:280px}.project-image img{width:100%;height:100%;object-fit:cover;transition:transform .7s}.project-card:hover .project-image img{transform:scale(1.035)}.project-info{padding:22px 25px 28px}.project-info span{font-size:10px;color:var(--accent);font-weight:700;letter-spacing:.08em}.project-info h3{font-family:Heebo;font-size:27px;margin-top:7px}.project-info p{color:var(--muted);font-size:14px;margin-top:5px}.project-info a{display:inline-block;margin-top:16px;font-size:13px;font-weight:700}.statement{background:var(--ink);color:#fff;padding:130px 5vw}.statement-inner{max-width:var(--max);margin:auto}.statement h2{font-family:Heebo;font-size:clamp(48px,7vw,90px);line-height:.98;letter-spacing:-.045em;margin:20px 0}.statement h2 em{font-style:normal;color:#d0ad76}.statement p{color:#aaa9a2;font-size:18px;max-width:470px;line-height:1.8;margin-bottom:35px}.contact{padding-bottom:120px}.contact-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:80px;margin-top:55px}.contact-grid>div:first-child p{font-size:19px;color:var(--muted);margin-top:25px}.contact-card{border-top:2px solid var(--ink);padding-top:20px}.contact-card p{color:var(--muted);font-size:13px}.contact-card a{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:22px 0;font-family:Heebo;font-size:22px;font-weight:700}.contact-card a span{color:var(--accent)}footer{background:var(--cream);padding:45px 5vw;display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px}footer .logo strong{color:var(--ink)}
+@media(max-width:800px){.site-header{height:70px;padding:0 20px}.site-header nav,.header-cta{display:none}.hero{min-height:700px}.hero-content{padding-bottom:70px}.hero h1{font-size:58px}.hero-copy{font-size:16px}.hero-actions{flex-direction:column;align-items:stretch}.trust-strip{grid-template-columns:1fr}.trust-strip div{border-left:0;border-bottom:1px solid var(--line);padding:22px 25px}.section{padding:85px 22px}.intro,.contact-grid{grid-template-columns:1fr;gap:45px}.section-heading{display:block}.section-heading>p{margin-top:25px}.service-grid{grid-template-columns:1fr 1fr;margin-top:40px}.service-card{min-height:210px;padding:22px}.service-card h3{margin-top:45px;font-size:21px}.project-grid{grid-template-columns:1fr;margin-top:40px}.project-1{grid-row:auto}.project-1 .project-image{height:390px}.project-2 .project-image,.project-3 .project-image{height:260px}.statement{padding:90px 22px}.statement h2{font-size:52px}footer{flex-direction:column;align-items:flex-start;gap:20px}}
+@media(max-width:500px){.service-grid{grid-template-columns:1fr}.hero h1{font-size:50px}.hero-number{display:none}.logo small{font-size:10px}}
+} /* end @layer base (legacy homepage styles) */
